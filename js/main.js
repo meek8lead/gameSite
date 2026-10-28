@@ -16,8 +16,8 @@
   // Размер одной гифки рамки в пикселях (квадрат).
   var FRAME_GIF_SIZE = 32;
 
-  // Папка с гифками. У тебя на GitHub — GIFs (с большой буквы).
-  var FRAME_GIF_PATH = 'GIFs/';
+  // Папка с гифками. Как на скрине: assets/gifs/
+  var FRAME_GIF_PATH = 'assets/gifs/';
 
   // GitHub-репозиторий для кнопки «Открыть на GitHub» в гостевой.
   var GH_OWNER = 'OWNER';   // <-- ЗАМЕНИ
@@ -38,7 +38,6 @@
 
   /* ============================================================
      РАМКА ИЗ ПИКМИКСОВ
-     Собирается по всему периметру экрана.
      ============================================================ */
 
   function gifSrc(index) {
@@ -53,15 +52,13 @@
     img.className = 'frame-gif';
     img.width = FRAME_GIF_SIZE;
     img.height = FRAME_GIF_SIZE;
-    // если гифки нет — не показываем битую иконку, просто пустое место
-    img.onerror = function () { this.style.visibility = 'hidden'; };
+    img.onerror = function () { this.style.display = 'none'; };
     return img;
   }
 
   function fillRow(rowEl) {
     if (!rowEl) return;
     rowEl.innerHTML = '';
-    // Берем ширину всего экрана (или родителя, если он шире)
     var width = window.innerWidth;
     var count = Math.ceil(width / FRAME_GIF_SIZE) + 1;
     for (var i = 1; i <= count; i++) {
@@ -83,10 +80,8 @@
     var rows = document.querySelectorAll('[data-frame-row]');
     var cols = document.querySelectorAll('[data-frame-col]');
 
-    // Заполняем верхнюю и нижнюю полосы
     rows.forEach(fillRow);
 
-    // Высоту колонок берем от высоты всего контента
     var contentArea = document.querySelector('.content-area');
     var contentHeight = contentArea ? contentArea.offsetHeight : window.innerHeight;
 
