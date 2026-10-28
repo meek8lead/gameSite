@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дружок's Games ★ Гостевая книга</title>
+<title>Eggbert Dickenson ★ Гостевая книга</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>★</text></svg>">
 <link rel="stylesheet" href="css/style.css">
 </head>
@@ -14,8 +14,8 @@
 </marquee>
 
 <header class="site-header">
-  <img src="assets/gifs/0.jpeg" alt="Дружок's Games" class="header-gif" onerror="this.style.display='none'; this.parentNode.classList.add('no-header-gif');">
-  <div class="header-fallback">ДРУЖОК'S GAMES</div>
+  <img src="assets/gifs/0.jpeg" alt="Eggbert Dickenson" class="header-gif" onerror="this.style.display='none'; this.parentNode.classList.add('no-header-gif');">
+  <div class="header-fallback">EGGBERT DICKENSON</div>
 </header>
 
 <div class="framed-layout">
@@ -32,7 +32,7 @@
         <div class="window">
           <div class="titlebar">
             <span class="title-icon">▣</span>
-            <span class="title-text">ДРУЖОК'S GAMES :: гостевая книга</span>
+            <span class="title-text">EGGBERT DICKENSON :: гостевая книга</span>
             <span class="title-buttons">_ □ ×</span>
           </div>
           <div class="window-body">
@@ -68,13 +68,7 @@
                   <button type="reset" class="btn btn-secondary">Очистить</button>
                 </div>
                 <p class="gb-note">
-                  Записи сохраняются в твоём браузере (localStorage). Кнопка «Открыть на GitHub»
-                  откроет новую issue в репозитории сайта — если хочешь, чтобы запись увидел Дружок,
-                  отправь её там.
-                </p>
-                <p class="gb-note gb-config-warn" id="gb-config-warn" style="display:none; color:#a00;">
-                  ⚠ Внимание: в <code>js/main.js</code> не настроены <code>GH_OWNER</code> и <code>GH_REPO</code>.
-                  Кнопка GitHub не работает, пока не впишешь свои значения.
+                  Записи сохраняются локально. Кнопка «Открыть на GitHub» создаст issue в репозитории.
                 </p>
               </form>
             </div>
@@ -94,19 +88,16 @@
           <div class="widget-body">
             <div class="stat-row"><span>Записей</span><b id="stat-count">0</b></div>
             <div class="stat-row"><span>Спама удалено</span><b>152</b></div>
-            <div class="stat-row"><span>Хамов забанено</span><b>3</b></div>
           </div>
         </div>
 
         <div class="widget">
           <div class="widget-title">▸ Музыка</div>
-          <div class="widget-body music-widget">
-            <div class="music-label">Фоновая тема сайта:</div>
+          <div class="widget-body">
             <button type="button" id="music-toggle" class="btn music-btn" data-state="off">▶ Включить</button>
             <audio id="bg-music" loop preload="none">
               <source src="assets/music/theme.mp3" type="audio/mpeg">
             </audio>
-            <div class="music-note">Файл: assets/music/theme.mp3</div>
           </div>
         </div>
 
@@ -129,8 +120,7 @@
 </div>
 
 <footer class="site-footer">
-  <div>© 1998—2024 Дружок's Games.</div>
-  <div class="footer-tiny">Гостевая работает локально. Никакой отправки на сервер.</div>
+  <div>© 1998—2024 Eggbert Dickenson.</div>
 </footer>
 
 <script src="js/main.js"></script>
