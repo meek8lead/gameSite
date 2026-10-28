@@ -3,186 +3,134 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Дружок's Games ★ Обо мне</title>
+<title>Дружок's Games ★ Гостевая книга</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>★</text></svg>">
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
 <marquee class="top-marquee" behavior="scroll" direction="left" scrollamount="4">
-  ★★★ Обо мне ★★★ Пишу игры в свободное время ★★★ Обожаю старые аркады ★★★ Мой ICQ: 148-832-567 ★★★
+  ★★★ ГОСТЕВАЯ КНИГА ★★★ Напиши, что думаешь ★★★ Только без спама, пожалуйста ★★★
 </marquee>
 
-<div class="layout">
-  <main class="main-column">
-    <div class="window">
-      <div class="titlebar">
-        <span class="title-icon">▣</span>
-        <span class="title-text">ДРУЖОК'S GAMES :: обо мне</span>
-        <span class="title-buttons">_ □ ×</span>
-      </div>
-      <div class="window-body">
+<header class="site-header">
+  <img src="assets/gifs/0.gif" alt="Дружок's Games" class="header-gif" onerror="this.style.display='none'; this.parentNode.classList.add('no-header-gif');">
+  <div class="header-fallback">ДРУЖОК'S GAMES</div>
+</header>
 
-        <nav class="main-nav">
-          <a href="index.html" class="nav-btn">Главная</a>
-          <a href="games.html" class="nav-btn">Игры</a>
-          <span class="nav-current">Обо мне</span>
-          <a href="guestbook.html" class="nav-btn">Гостевая</a>
-        </nav>
+<div class="framed-layout">
 
-        <h1 class="page-title"><img src="assets/gifs/star.gif" alt="" class="h2-gif" onerror="this.style.display='none'"> Обо мне <img src="assets/gifs/star.gif" alt="" class="h2-gif" onerror="this.style.display='none'"></h1>
+  <div class="frame-row frame-top" data-frame-row></div>
 
-        <div class="about-grid">
-          <pre class="about-ascii" aria-hidden="true">
-     ___
-    |___|
-    |   |
- ___|___|___
-|           |
-|  ДРУЖОК   |
-|___________|
-   |     |
-   |_____|
-   /     \
-  (       )
-   \_____/
-  ▓▓▓▓▓▓▓▓▓
-  ▓ ░ ░ ░ ▓
-  ▓▓▓▓▓▓▓▓▓</pre>
-          <div class="about-text">
-            <p>
-              Привет. Меня зовут <b>Дружок</b>, мне 34, и я до сих пор пишу игры
-              по вечерам, потому что это веселее, чем смотреть сериалы.
-            </p>
-            <p>
-              Начал в 1998 году с кнопочного телефона: там была змейка, и я
-              решил, что хочу свою такую же. Потом были паскаль, флеш, javascript,
-              а теперь — HTML5 Canvas. Всё, что ты видишь на этом сайте — сделано
-              руками, без фреймворков вроде React и без нейросетей.
-            </p>
-            <p>
-              Мой сайт — это принципиальная позиция. Никаких поп-апов,
-              никакой аналитики, никаких «cookies», никаких подписок на рассылку.
-              Только игры. Открыл, поиграл, ушёл — в этом весь смысл.
-            </p>
-            <div class="about-gif-row">
-              <img src="assets/gifs/dancing-baby.gif" alt="" class="about-gif" onerror="this.style.display='none'">
-              <span class="about-gif-caption">— это я в 2001-м</span>
+  <div class="frame-middle">
+
+    <div class="frame-col frame-left" data-frame-col></div>
+
+    <div class="content-area">
+
+      <main class="main-column">
+        <div class="window">
+          <div class="titlebar">
+            <span class="title-icon">▣</span>
+            <span class="title-text">ДРУЖОК'S GAMES :: гостевая книга</span>
+            <span class="title-buttons">_ □ ×</span>
+          </div>
+          <div class="window-body">
+
+            <nav class="main-nav">
+              <a href="index.html" class="nav-btn">Главная</a>
+              <a href="games.html" class="nav-btn">Игры</a>
+              <a href="about.html" class="nav-btn">Обо мне</a>
+              <span class="nav-current">Гостевая</span>
+            </nav>
+
+            <h1 class="page-title">★ Гостевая книга ★</h1>
+            <p class="page-sub">Правила: не спамить, не хамить, не рекламировать казино. Всё остальное — можно.</p>
+
+            <div class="section">
+              <h2>▸ Оставить запись</h2>
+              <form id="guestbook-form" class="gb-form">
+                <label>
+                  <span>Твоё имя:</span>
+                  <input type="text" name="name" required maxlength="40" placeholder="Аноним">
+                </label>
+                <label>
+                  <span>Сайт (необязательно):</span>
+                  <input type="url" name="site" maxlength="120" placeholder="http://">
+                </label>
+                <label>
+                  <span>Сообщение:</span>
+                  <textarea name="message" required maxlength="500" rows="5" placeholder="Пиши тут..."></textarea>
+                </label>
+                <div class="gb-actions">
+                  <button type="submit" class="btn">Отправить ▸</button>
+                  <button type="button" id="gb-gh-btn" class="btn btn-secondary">Открыть на GitHub</button>
+                  <button type="reset" class="btn btn-secondary">Очистить</button>
+                </div>
+                <p class="gb-note">
+                  Записи сохраняются в твоём браузере (localStorage). Кнопка «Открыть на GitHub»
+                  откроет новую issue в репозитории сайта — если хочешь, чтобы запись увидел Дружок,
+                  отправь её там.
+                </p>
+                <p class="gb-note gb-config-warn" id="gb-config-warn" style="display:none; color:#a00;">
+                  ⚠ Внимание: в <code>js/main.js</code> не настроены <code>GH_OWNER</code> и <code>GH_REPO</code>.
+                  Кнопка GitHub не работает, пока не впишешь свои значения.
+                </p>
+              </form>
             </div>
+
+            <div class="section">
+              <h2>▸ Записи <span class="gb-count" id="gb-count"></span></h2>
+              <div id="guestbook-entries" class="gb-entries"></div>
+            </div>
+
+          </div>
+        </div>
+      </main>
+
+      <aside class="sidebar">
+        <div class="widget">
+          <div class="widget-title">▸ Статистика</div>
+          <div class="widget-body">
+            <div class="stat-row"><span>Записей</span><b id="stat-count">0</b></div>
+            <div class="stat-row"><span>Спама удалено</span><b>152</b></div>
+            <div class="stat-row"><span>Хамов забанено</span><b>3</b></div>
           </div>
         </div>
 
-        <div class="section">
-          <h2>▸ Что я умею</h2>
-          <div class="skills">
-            <div class="skill-row">
-              <span class="skill-name">HTML5 Canvas</span>
-              <span class="skill-bar"><span style="width:95%"></span></span>
-              <span class="skill-val">95%</span>
-            </div>
-            <div class="skill-row">
-              <span class="skill-name">Vanilla JS</span>
-              <span class="skill-bar"><span style="width:90%"></span></span>
-              <span class="skill-val">90%</span>
-            </div>
-            <div class="skill-row">
-              <span class="skill-name">CSS</span>
-              <span class="skill-bar"><span style="width:80%"></span></span>
-              <span class="skill-val">80%</span>
-            </div>
-            <div class="skill-row">
-              <span class="skill-name">Геймдизайн</span>
-              <span class="skill-bar"><span style="width:70%"></span></span>
-              <span class="skill-val">70%</span>
-            </div>
-            <div class="skill-row">
-              <span class="skill-name">Терпение к багам</span>
-              <span class="skill-bar"><span style="width:15%"></span></span>
-              <span class="skill-val">15%</span>
-            </div>
+        <div class="widget">
+          <div class="widget-title">▸ Музыка</div>
+          <div class="widget-body music-widget">
+            <div class="music-label">Фоновая тема сайта:</div>
+            <button type="button" id="music-toggle" class="btn music-btn" data-state="off">▶ Включить</button>
+            <audio id="bg-music" loop preload="none">
+              <source src="assets/music/theme.mp3" type="audio/mpeg">
+            </audio>
+            <div class="music-note">Файл: assets/music/theme.mp3</div>
           </div>
         </div>
 
-        <div class="section">
-          <h2>▸ Мой сетап</h2>
-          <table class="spec-table">
-            <tr><td>Компьютер</td><td>Сам собрал, i5, 16 ГБ, GTX 1060</td></tr>
-            <tr><td>Монитор</td><td>Dell 24", ещё живой</td></tr>
-            <tr><td>Клавиатура</td><td>Механика, синие свитчи, соседи в восторге</td></tr>
-            <tr><td>Редактор</td><td>Notepad++ с 2010 года</td></tr>
-            <tr><td>Терминал</td><td>Windows Terminal, потому что я не сноб</td></tr>
-            <tr><td>ОС</td><td>Windows 10, но душа — в Windows 98</td></tr>
-          </table>
+        <div class="widget">
+          <div class="widget-title">▸ Не забудь</div>
+          <div class="widget-body">
+            <p class="small">Если нашёл баг — пиши сюда, я читаю всё.</p>
+          </div>
         </div>
+      </aside>
 
-        <div class="section">
-          <h2>▸ Любимые игры</h2>
-          <ul class="fav-games">
-            <li><b>DOOM (1993)</b> — потому что это не стареет.</li>
-            <li><b>Prince of Persia (1989)</b> — первый платформер, который меня победил.</li>
-            <li><b>Tetris</b> — вне времени, вне конкуренции.</li>
-            <li><b>Heroes of Might and Magic III</b> — до сих пор играю в hot-seat.</li>
-            <li><b>Всё, что на этом сайте</b> — да, я себя люблю.</li>
-          </ul>
-        </div>
-
-        <div class="section">
-          <h2>▸ Связаться со мной</h2>
-          <table class="spec-table">
-            <tr>
-              <td>E-mail</td>
-              <td>
-                <a href="mailto:druzhok@example.ru"><img src="assets/gifs/email.gif" alt="" class="inline-gif" onerror="this.style.display='none'"> druzhok@example.ru</a>
-              </td>
-            </tr>
-            <tr><td>ICQ</td><td><b>148-832-567</b></td></tr>
-            <tr><td>Jabber</td><td>druzhok@jabber.ru</td></tr>
-            <tr><td>Гостевая</td><td><a href="guestbook.html">тык</a></td></tr>
-            <tr><td>Телефон</td><td>Нет, спасибо</td></tr>
-          </table>
-        </div>
-
-      </div>
-    </div>
-  </main>
-
-  <aside class="sidebar">
-    <div class="widget">
-      <div class="widget-title">▸ Цитата</div>
-      <div class="widget-body">
-        <blockquote class="quote">
-          «Хорошая игра — это не графика. Это когда после проигрыша хочется
-          нажать "Ещё раз", а не выключить компьютер».
-        </blockquote>
-        <div class="quote-author">— Дружок, 2024</div>
-      </div>
     </div>
 
-    <div class="widget">
-      <div class="widget-title">▸ Музыка</div>
-      <div class="widget-body music-widget">
-        <div class="music-label">Фоновая тема сайта:</div>
-        <button type="button" id="music-toggle" class="btn music-btn" data-state="off">▶ Включить</button>
-        <audio id="bg-music" loop preload="none">
-          <source src="assets/music/theme.mp3" type="audio/mpeg">
-        </audio>
-        <div class="music-note">Файл: assets/music/theme.mp3</div>
-      </div>
-    </div>
+    <div class="frame-col frame-right" data-frame-col></div>
 
-    <div class="widget">
-      <div class="widget-title">▸ Глобус</div>
-      <div class="widget-body globe-widget">
-        <img src="assets/gifs/globe.gif" alt="Глобус" class="globe-gif" onerror="this.style.display='none'">
-        <div class="globe-caption">Посетителей со всего мира</div>
-      </div>
-    </div>
-  </aside>
+  </div>
+
+  <div class="frame-row frame-bottom" data-frame-row></div>
+
 </div>
 
 <footer class="site-footer">
   <div>© 1998—2024 Дружок's Games.</div>
-  <div class="footer-tiny">Сделано руками. Без AI.</div>
+  <div class="footer-tiny">Гостевая работает локально. Никакой отправки на сервер.</div>
 </footer>
 
 <script src="js/main.js"></script>
