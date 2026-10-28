@@ -55,6 +55,21 @@ a:hover, a:active { color: #ff0000; }
 b, strong { color: #800000; }
 .small { font-size: 13px; color: #444; }
 
+/* --- GIF В ЗАГОЛОВКАХ --- */
+.h2-gif {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
+.inline-gif {
+  width: 16px;
+  height: 16px;
+  vertical-align: middle;
+  display: inline-block;
+  margin-right: 2px;
+}
+
 /* --- MARQUEE --- */
 .top-marquee {
   display: block;
@@ -103,10 +118,10 @@ b, strong { color: #800000; }
 .framed-layout {
   max-width: 1180px;
   margin: 0 auto;
-  /* CSS-фолбэк: если JS не сработал, хоть какая-то рамка будет */
   border-left: 32px solid transparent;
   border-right: 32px solid transparent;
-  border-image: url("../GIFs/1.gif") 32 repeat;
+  /* Фолбэк, если JS не прогрузится */
+  border-image: url("../assets/gifs/1.gif") 32 repeat;
 }
 
 .frame-row {
@@ -446,6 +461,10 @@ b, strong { color: #800000; }
   justify-content: center;
   padding: 8px;
 }
+.badges img {
+  display: block;
+  border: 1px solid #000;
+}
 .badge {
   width: 88px;
   height: 31px;
@@ -469,6 +488,7 @@ b, strong { color: #800000; }
 .badge-green{ background: #006400; color: #fff; }
 
 .webring { text-align: center; }
+.webring-logo { display: block; margin: 0 auto 6px; max-width: 100%; }
 .webring-title {
   font-family: Impact, sans-serif;
   font-size: 14px;
@@ -496,6 +516,10 @@ b, strong { color: #800000; }
 
 .quote { margin: 0; font-style: italic; font-size: 13px; color: #222; }
 .quote-author { text-align: right; margin-top: 6px; font-size: 12px; color: #000080; }
+
+.globe-widget { text-align: center; }
+.globe-gif { display: block; margin: 0 auto 6px; max-width: 100%; }
+.globe-caption { font-size: 10px; color: #666; font-family: "Courier New", monospace; }
 
 /* --- ABOUT --- */
 .about-grid {
