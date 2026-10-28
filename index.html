@@ -14,18 +14,18 @@
   ★★★ ДОБРО ПОЖАЛОВАТЬ НА САЙТ ЭГГБЕРТА ДИККЕНСОНА ★★★ Новые игры каждую неделю ★★★ Гостевая книга ждёт тебя ★★★ Сайт лучше всего смотрится в Netscape Navigator 3.0 при 800x600 ★★★
 </marquee>
 
-<header class="site-header">
-  <img src="assets/gifs/0.jpeg" alt="Eggbert Dickenson" class="header-gif" onerror="this.style.display='none'; this.parentNode.classList.add('no-header-gif');">
-  <div class="header-fallback">EGGBERT DICKENSON</div>
-</header>
+<div class="layout-wrapper">
 
-<div class="framed-layout">
+  <!-- ЛЕВЫЙ СТОЛБ С БОЛЬШИМИ ПИКМИКСАМИ -->
+  <aside class="pixmix-column" id="left-pixmixes"></aside>
 
-  <div class="frame-row frame-top" data-frame-row></div>
-
-  <div class="frame-middle">
-
-    <div class="frame-col frame-left" data-frame-col></div>
+  <!-- ЦЕНТР: САЙТ -->
+  <div class="center-content">
+    
+    <header class="site-header">
+      <img src="assets/gifs/0.jpeg" alt="Eggbert Dickenson" class="header-gif" onerror="this.style.display='none'; this.parentNode.classList.add('no-header-gif');">
+      <div class="header-fallback">EGGBERT DICKENSON</div>
+    </header>
 
     <div class="content-area">
 
@@ -200,18 +200,17 @@
 
     </div>
 
-    <div class="frame-col frame-right" data-frame-col></div>
+    <footer class="site-footer">
+      <div>© 1998—2024 Eggbert Dickenson. Сделано руками, а не нейросетью.</div>
+      <div>Сайт лучше всего смотрится в разрешении <b>1024x768</b> и браузере <b>Netscape Navigator 3.0</b></div>
+    </footer>
 
   </div>
 
-  <div class="frame-row frame-bottom" data-frame-row></div>
+  <!-- ПРАВЫЙ СТОЛБ С БОЛЬШИМИ ПИКМИКСАМИ -->
+  <aside class="pixmix-column" id="right-pixmixes"></aside>
 
 </div>
-
-<footer class="site-footer">
-  <div>© 1998—2024 Eggbert Dickenson. Сделано руками, а не нейросетью.</div>
-  <div>Сайт лучше всего смотрится в разрешении <b>1024x768</b> и браузере <b>Netscape Navigator 3.0</b></div>
-</footer>
 
 <script src="js/main.js"></script>
 </body>
