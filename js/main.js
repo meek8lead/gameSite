@@ -1,17 +1,27 @@
 /* ============================================
    ДРУЖОК'S GAMES — скрипты
-   Ванильный JS, без библиотек. Потому что могу.
+   Ванильный JS, без библиотек.
    ============================================ */
 
 (function () {
   'use strict';
 
   /* ============================================================
-     НАСТРОЙКИ ГОСТЕВОЙ (GitHub Issues)
-     Впиши сюда свой username и имя репозитория.
-     Пример: если репо https://github.com/druzhok/druzhok-games,
-     то GH_OWNER = 'druzhok', GH_REPO = 'druzhok-games'.
+     НАСТРОЙКИ
      ============================================================ */
+
+  // Сколько гифок участвует в рамке (1.gif … N.gif).
+  // Если положил 5 штук — ставь 5. Если 12 — ставь 12.
+  var FRAME_GIF_COUNT = 8;
+
+  // Размер одной гифки рамки в пикселях (квадрат).
+  // Если твои гифки крупнее/мельче — поменяй (и в CSS тоже).
+  var FRAME_GIF_SIZE = 32;
+
+  // Путь к папке с гифками.
+  var FRAME_GIF_PATH = 'assets/gifs/';
+
+  // GitHub-репозиторий для кнопки «Открыть на GitHub» в гостевой.
   var GH_OWNER = 'OWNER';   // <-- ЗАМЕНИ
   var GH_REPO  = 'REPO';    // <-- ЗАМЕНИ
 
@@ -28,14 +38,79 @@
     });
   }
 
-  /* ---------- СЧЁТЧИК ПОСЕТИТЕЛЕЙ ---------- */
+  /* ============================================================
+     РАМКА ИЗ ПИКМИКСОВ
+     Верхняя/нижняя полосы + левая/правая колонки.
+     Гифки циклично: 1.gif, 2.gif, ..., N.gif, 1.gif, ...
+     ============================================================ */
+
+  function gifSrc(index) {
+    // index начинается с 1
+    var n = ((index - 1) % FRAME_GIF_COUNT) + 1;
+    return FRAME_GIF_PATH + n + '.gif';
+  }
+
+  function makeFrameImg(index) {
+    var img = document.createElement('img');
+    img.src = gifSrc(index);
+    img.alt = '';
+    img.className = 'frame-gif';
+    img.width = FRAME_GIF_SIZE;
+    img.height = FRAME_GIF_SIZE;
+    // если гифки нет — не показываем битую иконку, просто пустое место
+    img.onerror = function () { this.style.visibility = 'hidden'; };
+    return img;
+  }
+
+  function fillRow(rowEl) {
+    if (!rowEl) return;
+    rowEl.innerHTML = '';
+    var width = rowEl.clientWidth || window.innerWidth;
+    var count = Math.ceil(width / FRAME_GIF_SIZE) + 1;
+    for (var i = 1; i <= count; i++) {
+      rowEl.appendChild(makeFrameImg(i));
+    }
+  }
+
+  function fillCol(colEl, height) {
+    if (!colEl) return;
+    colEl.innerHTML = '';
+    var h = height || colEl.clientHeight || window.innerHeight;
+    var count = Math.ceil(h / FRAME_GIF_SIZE) + 1;
+    for (var i = 1; i <= count; i++) {
+      colEl.appendChild(makeFrameImg(i));
+    }
+  }
+
+  function buildFrame() {
+    var rows = document.querySelectorAll('[data-frame-row]');
+    var cols = document.querySelectorAll('[data-frame-col]');
+
+    rows.forEach(fillRow);
+
+    // высоту колонок берём от content-area, чтобы совпадало
+    var contentArea = document.querySelector('.content-area');
+    var contentHeight = contentArea ? contentArea.offsetHeight : 0;
+
+    cols.forEach(function (col) {
+      fillCol(col, contentHeight);
+    });
+  }
+
+  // перестроить рамку при ресайзе (с дебаунсом)
+  var resizeTimer = null;
+  function onResize() {
+    if (resizeTimer) clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(buildFrame, 150);
+  }
+
+  /* ---------- СЧЁТЧИК ---------- */
   var COUNTER_KEY = 'druzhok_visits';
   var START_COUNT = 14832;
 
   function initCounter() {
     var el = document.getElementById('visitor-counter');
     if (!el) return;
-
     var stored = parseInt(localStorage.getItem(COUNTER_KEY), 10);
     var count = isNaN(stored) ? START_COUNT + 1 : stored + 1;
     localStorage.setItem(COUNTER_KEY, count);
@@ -46,7 +121,6 @@
   function initClock() {
     var el = document.getElementById('server-clock');
     if (!el) return;
-
     function tick() {
       var d = new Date();
       el.textContent = pad(d.getHours(), 2) + ':' + pad(d.getMinutes(), 2) + ':' + pad(d.getSeconds(), 2);
@@ -108,7 +182,7 @@
     {
       name: 'Диман',
       site: '',
-      message: 'Дружок, тетрис огонь! Но змейка лучше. Не обижайся.',
+      message: 'Ралли со штурманом — огонь. Но я всё равно врезался в дерево на первом повороте. Спасибо, конечно.',
       date: '2024-03-10T19:23:00'
     },
     {
@@ -120,7 +194,7 @@
     {
       name: 'Серёга_777',
       site: '',
-      message: 'Слушай, а морской бой сложный. Я на "адмирале" застрял на 3 часа. Спасибо, конечно, но так нельзя.',
+      message: 'ДедЗонТри — жёстко. Я умер на второй комнате. Пять раз. Спасибо, конечно, но так нельзя.',
       date: '2024-03-02T22:41:00'
     },
     {
@@ -178,8 +252,7 @@
 
   function isGHConfigured() {
     return GH_OWNER && GH_REPO &&
-           GH_OWNER !== 'OWNER' && GH_REPO !== 'REPO' &&
-           GH_OWNER.length > 0 && GH_REPO.length > 0;
+           GH_OWNER !== 'OWNER' && GH_REPO !== 'REPO';
   }
 
   function openGitHubIssue(name, message, site) {
@@ -202,7 +275,6 @@
     var form = document.getElementById('guestbook-form');
     if (!form) return;
 
-    // показать предупреждение, если конфиг не заполнен
     if (!isGHConfigured()) {
       var warn = document.getElementById('gb-config-warn');
       if (warn) warn.style.display = 'block';
@@ -216,7 +288,6 @@
       var name = (data.get('name') || '').toString().trim();
       var message = (data.get('message') || '').toString().trim();
       var site = (data.get('site') || '').toString().trim();
-
       if (!name || !message) return;
 
       var entries = loadGB();
@@ -231,24 +302,21 @@
       renderGB();
     });
 
-    // кнопка «Открыть на GitHub»
     var ghBtn = document.getElementById('gb-gh-btn');
     if (ghBtn) {
       ghBtn.addEventListener('click', function () {
         if (!isGHConfigured()) {
-          alert('Настрой GH_OWNER и GH_REPO в js/main.js — я не знаю, куда отправлять.');
+          alert('Настрой GH_OWNER и GH_REPO в js/main.js.');
           return;
         }
         var data = new FormData(form);
         var name = (data.get('name') || '').toString().trim() || 'Аноним';
         var message = (data.get('message') || '').toString().trim();
         var site = (data.get('site') || '').toString().trim();
-
         if (!message) {
-          alert('Сначала напиши сообщение в поле «Сообщение».');
+          alert('Сначала напиши сообщение.');
           return;
         }
-
         openGitHubIssue(name, message, site);
       });
     }
@@ -256,6 +324,9 @@
 
   /* ---------- ИНИЦИАЛИЗАЦИЯ ---------- */
   document.addEventListener('DOMContentLoaded', function () {
+    buildFrame();
+    window.addEventListener('resize', onResize);
+
     initCounter();
     initClock();
     initMusic();
