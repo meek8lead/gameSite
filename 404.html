@@ -13,43 +13,67 @@
   ★★★ ОШИБКА 404 ★★★ Страница улетела в космос ★★★ Вернись на главную, там всё хорошо ★★★
 </marquee>
 
-<div class="layout">
-  <main class="main-column">
-    <div class="window">
-      <div class="titlebar">
-        <span class="title-icon">▣</span>
-        <span class="title-text">ДРУЖОК'S GAMES :: 404</span>
-        <span class="title-buttons">_ □ ×</span>
-      </div>
-      <div class="window-body">
+<header class="site-header">
+  <img src="assets/gifs/0.gif" alt="Дружок's Games" class="header-gif" onerror="this.style.display='none'; this.parentNode.classList.add('no-header-gif');">
+  <div class="header-fallback">ДРУЖОК'S GAMES</div>
+</header>
 
-        <div class="error-404">
-          <pre class="ascii-404">
+<div class="framed-layout">
+
+  <div class="frame-row frame-top" data-frame-row></div>
+
+  <div class="frame-middle">
+
+    <div class="frame-col frame-left" data-frame-col></div>
+
+    <div class="content-area">
+
+      <main class="main-column">
+        <div class="window">
+          <div class="titlebar">
+            <span class="title-icon">▣</span>
+            <span class="title-text">ДРУЖОК'S GAMES :: 404</span>
+            <span class="title-buttons">_ □ ×</span>
+          </div>
+          <div class="window-body">
+
+            <div class="error-404">
+              <pre class="ascii-404">
    ██████╗  ██████╗ ██╗  ██╗
    ██╔══██╗██╔═████╗██║  ██║
    ██║  ██║██║██╔██║███████║
    ██║  ██║████╔╝██║╚════██║
    ██████╔╝╚██████╔╝     ██║
    ╚═════╝  ╚═════╝      ╚═╝</pre>
-          <h1 class="page-title">СТРАНИЦА НЕ НАЙДЕНА</h1>
-          <p class="page-sub">
-            Такой страницы нет. Возможно, она была, но потом исчезла.
-            Или ты опечатался. Или я её удалил. Кто теперь разберёт.
-          </p>
-          <p style="text-align:center; margin-top:32px;">
-            <a href="index.html" class="btn">◂ На главную</a>
-            <a href="games.html" class="btn btn-secondary">К играм</a>
-          </p>
-        </div>
+              <h1 class="page-title">СТРАНИЦА НЕ НАЙДЕНА</h1>
+              <p class="page-sub">
+                Такой страницы нет. Возможно, она была, но потом исчезла.
+                Или ты опечатался. Или я её удалил. Кто теперь разберёт.
+              </p>
+              <p style="text-align:center; margin-top:32px;">
+                <a href="index.html" class="btn">◂ На главную</a>
+                <a href="games.html" class="btn btn-secondary">К играм</a>
+              </p>
+            </div>
 
-      </div>
+          </div>
+        </div>
+      </main>
+
     </div>
-  </main>
+
+    <div class="frame-col frame-right" data-frame-col></div>
+
+  </div>
+
+  <div class="frame-row frame-bottom" data-frame-row></div>
+
 </div>
 
 <footer class="site-footer">
   <div>© 1998—2024 Дружок's Games. Ошибка 404 — это тоже контент.</div>
 </footer>
 
+<script src="js/main.js"></script>
 </body>
 </html>
