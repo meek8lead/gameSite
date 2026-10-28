@@ -20,8 +20,8 @@
   var FRAME_GIF_PATH = 'GIFs/';
 
   // GitHub-репозиторий для кнопки «Открыть на GitHub» в гостевой.
-  var GH_OWNER = 'OWNER';   // <-- ЗАМЕНИ
-  var GH_REPO  = 'REPO';    // <-- ЗАМЕНИ
+  var GH_OWNER = 'meek8lead';   // <-- ЗАМЕНИ
+  var GH_REPO  = 'gameSite';    // <-- ЗАМЕНИ
 
   /* ---------- ХЕЛПЕРЫ ---------- */
   function pad(num, size) {
