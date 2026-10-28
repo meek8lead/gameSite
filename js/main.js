@@ -9,11 +9,8 @@
      НАСТРОЙКИ
      ============================================================ */
 
-  // Сколько пикмикс-гифок в рамке (1.gif … 26.gif)
+  // Сколько пикмикс-гифок всего
   var FRAME_GIF_COUNT = 26;
-
-  // Размер одной гифки рамки в пикселях (теперь 64, как ты просил)
-  var FRAME_GIF_SIZE = 64;
 
   // Папка с гифками
   var FRAME_GIF_PATH = 'assets/gifs/';
@@ -36,63 +33,37 @@
   }
 
   /* ============================================================
-     РАМКА ИЗ ПИКМИКСОВ
+     БОЛЬШИЕ ПИКМИКС-СТОЛБЫ ПО БОКАМ
      ============================================================ */
 
-  function gifSrc(index) {
-    var n = ((index - 1) % FRAME_GIF_COUNT) + 1;
-    return FRAME_GIF_PATH + n + '.gif';
-  }
+  function buildPixmixColumns() {
+    var leftCol = document.getElementById('left-pixmixes');
+    var rightCol = document.getElementById('right-pixmixes');
+    if (!leftCol || !rightCol) return;
 
-  function makeFrameImg(index) {
-    var img = document.createElement('img');
-    img.src = gifSrc(index);
-    img.alt = '';
-    img.className = 'frame-gif';
-    img.width = FRAME_GIF_SIZE;
-    img.height = FRAME_GIF_SIZE;
-    img.onerror = function () { this.style.display = 'none'; };
-    return img;
-  }
+    leftCol.innerHTML = '';
+    rightCol.innerHTML = '';
 
-  function fillRow(rowEl) {
-    if (!rowEl) return;
-    rowEl.innerHTML = '';
-    var width = window.innerWidth;
-    var count = Math.ceil(width / FRAME_GIF_SIZE) + 1;
-    for (var i = 1; i <= count; i++) {
-      rowEl.appendChild(makeFrameImg(i));
+    // Делим 26 гифок напополам: 13 налево, 13 направо
+    var half = Math.ceil(FRAME_GIF_COUNT / 2);
+
+    for (var i = 1; i <= half; i++) {
+      var img = document.createElement('img');
+      img.src = FRAME_GIF_PATH + i + '.gif';
+      img.className = 'pixmix-img';
+      img.alt = '';
+      img.onerror = function () { this.style.display = 'none'; };
+      leftCol.appendChild(img);
     }
-  }
 
-  function fillCol(colEl, height) {
-    if (!colEl) return;
-    colEl.innerHTML = '';
-    var h = height || window.innerHeight;
-    var count = Math.ceil(h / FRAME_GIF_SIZE) + 1;
-    for (var i = 1; i <= count; i++) {
-      colEl.appendChild(makeFrameImg(i));
+    for (var j = half + 1; j <= FRAME_GIF_COUNT; j++) {
+      var img = document.createElement('img');
+      img.src = FRAME_GIF_PATH + j + '.gif';
+      img.className = 'pixmix-img';
+      img.alt = '';
+      img.onerror = function () { this.style.display = 'none'; };
+      rightCol.appendChild(img);
     }
-  }
-
-  function buildFrame() {
-    var rows = document.querySelectorAll('[data-frame-row]');
-    var cols = document.querySelectorAll('[data-frame-col]');
-
-    rows.forEach(fillRow);
-
-    var contentArea = document.querySelector('.content-area');
-    var contentHeight = contentArea ? contentArea.offsetHeight : window.innerHeight;
-
-    cols.forEach(function (col) {
-      fillCol(col, contentHeight);
-    });
-  }
-
-  var resizeTimer = null;
-  function onResize() {
-    if (resizeTimer) clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(buildFrame, 150);
   }
 
   /* ---------- СЧЁТЧИК ---------- */
@@ -182,12 +153,6 @@
       site: '',
       message: 'ДедЗонТри — жёстко. Я умер на второй комнате. Пять раз. Спасибо, конечно, но так нельзя.',
       date: '2024-03-02T22:41:00'
-    },
-    {
-      name: 'Аноним',
-      site: '',
-      message: 'Зашёл из 2003 года. Всё как раньше. Спасибо, что живой.',
-      date: '2024-02-20T03:12:00'
     }
   ];
 
@@ -295,8 +260,7 @@
 
   /* ---------- ИНИЦИАЛИЗАЦИЯ ---------- */
   document.addEventListener('DOMContentLoaded', function () {
-    buildFrame();
-    window.addEventListener('resize', onResize);
+    buildPixmixColumns();
 
     initCounter();
     initClock();
