@@ -99,7 +99,7 @@ b, strong { color: #800000; }
 
 /* --- БОЛЬШИЕ ПИКМИКС-СТОЛБЫ --- */
 .pixmix-column {
-  flex: 0 0 180px; /* Ширина колонки */
+  flex: 0 0 300px; /* Ширина колонки */
   display: flex;
   flex-direction: column;
   gap: 16px;
@@ -337,11 +337,11 @@ b, strong { color: #800000; }
 
 /* --- АДАПТИВНОСТЬ --- */
 @media (max-width: 1400px) {
-  .pixmix-column { flex: 0 0 120px; }
+  .pixmix-column { flex: 0 0 180px; }
 }
 
 @media (max-width: 1100px) {
-  .pixmix-column { flex: 0 0 80px; }
+  .pixmix-column { flex: 0 0 110px; }
   .layout-wrapper { gap: 12px; padding: 0 8px; }
 }
 
