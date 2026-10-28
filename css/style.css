@@ -1,6 +1,5 @@
 /* ============================================
    ДРУЖОК'S GAMES — стили
-   Писано руками, без ИИ и без фреймворков.
    ============================================ */
 
 *, *::before, *::after { box-sizing: border-box; }
@@ -71,7 +70,7 @@ b, strong { color: #800000; }
   max-width: 1180px;
 }
 
-/* --- ШАПКА (0.gif) --- */
+/* --- ШАПКА (0.jpeg) --- */
 .site-header {
   max-width: 1180px;
   margin: 0 auto 12px;
@@ -104,6 +103,10 @@ b, strong { color: #800000; }
 .framed-layout {
   max-width: 1180px;
   margin: 0 auto;
+  /* CSS-фолбэк: если JS не сработал, хоть какая-то рамка будет */
+  border-left: 32px solid transparent;
+  border-right: 32px solid transparent;
+  border-image: url("../GIFs/1.gif") 32 repeat;
 }
 
 .frame-row {
@@ -111,8 +114,8 @@ b, strong { color: #800000; }
   flex-wrap: nowrap;
   width: 100%;
   line-height: 0;
-  /* высота задаётся JS через style на дочерних img */
   overflow: hidden;
+  justify-content: space-between;
 }
 .frame-row .frame-gif {
   display: block;
@@ -136,6 +139,7 @@ b, strong { color: #800000; }
   flex-direction: column;
   overflow: hidden;
   line-height: 0;
+  justify-content: space-between;
 }
 .frame-col .frame-gif {
   display: block;
@@ -153,17 +157,16 @@ b, strong { color: #800000; }
   gap: 16px;
   align-items: flex-start;
   padding: 8px 0;
-  /* фолбэк, если JS не сгенерировал рамку — хотя бы отступы */
 }
 
 .main-column { flex: 1 1 auto; min-width: 0; }
 .sidebar { flex: 0 0 240px; display: flex; flex-direction: column; gap: 12px; }
 
-/* на мобилке колонки рамки можно сузить */
 @media (max-width: 800px) {
   .frame-row .frame-gif,
   .frame-col .frame-gif { width: 24px; height: 24px; }
   .frame-col { flex-basis: 24px; width: 24px; }
+  .framed-layout { border-left-width: 24px; border-right-width: 24px; border-image-width: 24px; }
 }
 
 /* --- ОКНО В СТИЛЕ WIN95 --- */
@@ -173,7 +176,6 @@ b, strong { color: #800000; }
   border-color: #fff #404040 #404040 #fff;
   box-shadow: 3px 3px 0 rgba(0,0,0,0.7);
 }
-
 .titlebar {
   background: linear-gradient(90deg, #000080, #1084d0);
   color: #fff;
@@ -575,93 +577,4 @@ b, strong { color: #800000; }
   background: #fff;
   border: 1px solid #808080;
   padding: 10px 12px;
-  font-size: 13px;
-}
-.gb-entry-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: 8px;
-  border-bottom: 1px solid #ddd;
-  padding-bottom: 4px;
-  margin-bottom: 6px;
-}
-.gb-entry-name {
-  font-weight: bold;
-  color: #000080;
-  font-family: Impact, sans-serif;
-  letter-spacing: 0.5px;
-}
-.gb-entry-date {
-  font-family: "Courier New", monospace;
-  font-size: 11px;
-  color: #666;
-}
-.gb-entry-msg { color: #222; white-space: pre-wrap; word-wrap: break-word; }
-.gb-entry-site { display: inline-block; font-size: 11px; margin-top: 4px; }
-.gb-count { color: #666; font-family: Arial, sans-serif; font-size: 14px; }
-
-/* --- 404 --- */
-.error-404 { text-align: center; padding: 20px 8px; }
-.ascii-404 {
-  font-family: "Courier New", monospace;
-  font-size: 11px;
-  line-height: 1.05;
-  color: #ff0066;
-  margin: 0 auto 20px;
-  text-align: left;
-  display: inline-block;
-  text-shadow: 1px 1px 0 #000080;
-}
-
-/* --- ФУТЕР --- */
-.site-footer {
-  max-width: 1180px;
-  margin: 24px auto 0;
-  padding: 14px 12px;
-  text-align: center;
-  font-size: 12px;
-  color: #ccc;
-  background: #000080;
-  border: 2px solid #ff0;
-  font-family: "Courier New", monospace;
-}
-.footer-tiny { font-size: 10px; color: #aaa; margin-top: 6px; }
-
-/* --- СКРОЛЛБАР В СТИЛЕ WIN95 --- */
-::-webkit-scrollbar { width: 16px; height: 16px; }
-::-webkit-scrollbar-track { background: #c0c0c0; }
-::-webkit-scrollbar-thumb {
-  background: #c0c0c0;
-  border: 2px solid;
-  border-color: #fff #404040 #404040 #fff;
-}
-::-webkit-scrollbar-thumb:hover { background: #d4d4d4; }
-::-webkit-scrollbar-button {
-  background: #c0c0c0;
-  border: 2px solid;
-  border-color: #fff #404040 #404040 #fff;
-  height: 16px;
-}
-
-/* --- МОБИЛКА --- */
-@media (max-width: 800px) {
-  .content-area { flex-direction: column; }
-  .sidebar { flex: 1 1 auto; width: 100%; flex-direction: row; flex-wrap: wrap; }
-  .sidebar .widget { flex: 1 1 200px; }
-  .about-grid { grid-template-columns: 1fr; }
-  .about-ascii { margin: 0 auto; max-width: 100%; }
-  .title-buttons { display: none; }
-  body { padding: 12px 6px; }
-  .window-body { padding: 12px; }
-  .skill-name { flex: 0 0 100px; }
-  .spec-table td:first-child { width: 110px; white-space: normal; }
-}
-
-@media (max-width: 480px) {
-  .games-grid { grid-template-columns: 1fr; }
-  .main-nav { justify-content: center; }
-  .page-title { font-size: 20px; }
-  .ascii-404 { font-size: 8px; }
-  .top-marquee { font-size: 11px; }
-}
+  font-size
