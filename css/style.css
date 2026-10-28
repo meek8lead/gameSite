@@ -659,4 +659,9 @@ b, strong { color: #800000; }
 }
 
 @media (max-width: 480px) {
-  .games-grid { grid-template-columns: 1
+  .games-grid { grid-template-columns: 1fr; }
+  .main-nav { justify-content: center; }
+  .page-title { font-size: 20px; }
+  .ascii-404 { font-size: 8px; }
+  .top-marquee { font-size: 11px; }
+}
