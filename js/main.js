@@ -20,8 +20,8 @@
   var FRAME_GIF_PATH = 'GIFs/';
 
   // GitHub-репозиторий для кнопки «Открыть на GitHub» в гостевой.
-  var GH_OWNER = 'meek8lead';   // <-- ЗАМЕНИ
-  var GH_REPO  = 'gameSite';    // <-- ЗАМЕНИ
+  var GH_OWNER = 'OWNER';   // <-- ЗАМЕНИ
+  var GH_REPO  = 'REPO';    // <-- ЗАМЕНИ
 
   /* ---------- ХЕЛПЕРЫ ---------- */
   function pad(num, size) {
@@ -38,6 +38,7 @@
 
   /* ============================================================
      РАМКА ИЗ ПИКМИКСОВ
+     Собирается по всему периметру экрана.
      ============================================================ */
 
   function gifSrc(index) {
@@ -52,6 +53,7 @@
     img.className = 'frame-gif';
     img.width = FRAME_GIF_SIZE;
     img.height = FRAME_GIF_SIZE;
+    // если гифки нет — не показываем битую иконку, просто пустое место
     img.onerror = function () { this.style.visibility = 'hidden'; };
     return img;
   }
@@ -59,7 +61,8 @@
   function fillRow(rowEl) {
     if (!rowEl) return;
     rowEl.innerHTML = '';
-    var width = rowEl.clientWidth || window.innerWidth;
+    // Берем ширину всего экрана (или родителя, если он шире)
+    var width = window.innerWidth;
     var count = Math.ceil(width / FRAME_GIF_SIZE) + 1;
     for (var i = 1; i <= count; i++) {
       rowEl.appendChild(makeFrameImg(i));
@@ -69,7 +72,7 @@
   function fillCol(colEl, height) {
     if (!colEl) return;
     colEl.innerHTML = '';
-    var h = height || colEl.clientHeight || window.innerHeight;
+    var h = height || window.innerHeight;
     var count = Math.ceil(h / FRAME_GIF_SIZE) + 1;
     for (var i = 1; i <= count; i++) {
       colEl.appendChild(makeFrameImg(i));
@@ -80,10 +83,12 @@
     var rows = document.querySelectorAll('[data-frame-row]');
     var cols = document.querySelectorAll('[data-frame-col]');
 
+    // Заполняем верхнюю и нижнюю полосы
     rows.forEach(fillRow);
 
+    // Высоту колонок берем от высоты всего контента
     var contentArea = document.querySelector('.content-area');
-    var contentHeight = contentArea ? contentArea.offsetHeight : 0;
+    var contentHeight = contentArea ? contentArea.offsetHeight : window.innerHeight;
 
     cols.forEach(function (col) {
       fillCol(col, contentHeight);
