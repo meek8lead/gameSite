@@ -10,16 +10,14 @@
      НАСТРОЙКИ
      ============================================================ */
 
-  // Сколько гифок участвует в рамке (1.gif … N.gif).
-  // Если положил 5 штук — ставь 5. Если 12 — ставь 12.
-  var FRAME_GIF_COUNT = 8;
+  // Сколько пикмикс-гифок участвует в рамке (1.gif … N.gif).
+  var FRAME_GIF_COUNT = 26;
 
   // Размер одной гифки рамки в пикселях (квадрат).
-  // Если твои гифки крупнее/мельче — поменяй (и в CSS тоже).
   var FRAME_GIF_SIZE = 32;
 
-  // Путь к папке с гифками.
-  var FRAME_GIF_PATH = 'assets/gifs/';
+  // Папка с гифками. У тебя на GitHub — GIFs (с большой буквы).
+  var FRAME_GIF_PATH = 'GIFs/';
 
   // GitHub-репозиторий для кнопки «Открыть на GitHub» в гостевой.
   var GH_OWNER = 'OWNER';   // <-- ЗАМЕНИ
@@ -40,12 +38,9 @@
 
   /* ============================================================
      РАМКА ИЗ ПИКМИКСОВ
-     Верхняя/нижняя полосы + левая/правая колонки.
-     Гифки циклично: 1.gif, 2.gif, ..., N.gif, 1.gif, ...
      ============================================================ */
 
   function gifSrc(index) {
-    // index начинается с 1
     var n = ((index - 1) % FRAME_GIF_COUNT) + 1;
     return FRAME_GIF_PATH + n + '.gif';
   }
@@ -57,7 +52,6 @@
     img.className = 'frame-gif';
     img.width = FRAME_GIF_SIZE;
     img.height = FRAME_GIF_SIZE;
-    // если гифки нет — не показываем битую иконку, просто пустое место
     img.onerror = function () { this.style.visibility = 'hidden'; };
     return img;
   }
@@ -88,7 +82,6 @@
 
     rows.forEach(fillRow);
 
-    // высоту колонок берём от content-area, чтобы совпадало
     var contentArea = document.querySelector('.content-area');
     var contentHeight = contentArea ? contentArea.offsetHeight : 0;
 
@@ -97,7 +90,6 @@
     });
   }
 
-  // перестроить рамку при ресайзе (с дебаунсом)
   var resizeTimer = null;
   function onResize() {
     if (resizeTimer) clearTimeout(resizeTimer);
