@@ -1,16 +1,11 @@
 /* ============================================
    ДРУЖОК'S GAMES — стили
    Писано руками, без ИИ и без фреймворков.
-   Если что-то сломается — я предупреждал.
    ============================================ */
 
-/* --- БАЗА --- */
 *, *::before, *::after { box-sizing: border-box; }
 
-html {
-  background: #000;
-  scroll-behavior: smooth;
-}
+html { background: #000; scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -40,7 +35,6 @@ h1, h2, h3 {
   letter-spacing: 1px;
   margin: 0 0 12px;
 }
-
 h1 {
   color: #ff0066;
   text-transform: uppercase;
@@ -48,45 +42,19 @@ h1 {
   text-shadow: 2px 2px 0 #ffcc00, 3px 3px 0 #000;
   margin: 8px 0 12px;
 }
-
 h2 {
   color: #000080;
   font-size: 22px;
   border-bottom: 2px dashed #808080;
   padding-bottom: 4px;
   margin: 4px 0 14px;
-  display: flex;
-  align-items: center;
-  gap: 6px;
 }
-
 p { margin: 0 0 10px; }
-
-a {
-  color: #0000ee;
-  text-decoration: underline;
-}
+a { color: #0000ee; text-decoration: underline; }
 a:visited { color: #551a8b; }
-a:hover { color: #ff0000; }
-a:active { color: #ff0000; }
-
+a:hover, a:active { color: #ff0000; }
 b, strong { color: #800000; }
 .small { font-size: 13px; color: #444; }
-
-/* --- GIF В ЗАГОЛОВКАХ --- */
-.h2-gif {
-  width: 20px;
-  height: 20px;
-  vertical-align: middle;
-  display: inline-block;
-}
-.inline-gif {
-  width: 16px;
-  height: 16px;
-  vertical-align: middle;
-  display: inline-block;
-  margin-right: 2px;
-}
 
 /* --- MARQUEE --- */
 .top-marquee {
@@ -99,20 +67,104 @@ b, strong { color: #800000; }
   padding: 5px 0;
   border-top: 2px solid #ff0;
   border-bottom: 2px solid #ff0;
-  margin-bottom: 20px;
+  margin: 0 auto 12px;
+  max-width: 1180px;
 }
 
-/* --- РАСКЛАДКА --- */
-.layout {
-  max-width: 1100px;
+/* --- ШАПКА (0.gif) --- */
+.site-header {
+  max-width: 1180px;
+  margin: 0 auto 12px;
+  text-align: center;
+}
+.header-gif {
+  display: block;
   margin: 0 auto;
+  max-width: 100%;
+  height: auto;
+  border: 2px solid #ff0;
+}
+.header-fallback { display: none; }
+.site-header.no-header-gif .header-fallback {
+  display: block;
+  font-family: Impact, sans-serif;
+  font-size: clamp(36px, 8vw, 80px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  background: linear-gradient(90deg, #ff0066 0%, #ff6600 25%, #ffcc00 50%, #00cc00 75%, #0066ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  filter: drop-shadow(2px 2px 0 #000) drop-shadow(3px 3px 0 #fff);
+  padding: 20px 8px;
+}
+
+/* --- РАМКА ИЗ ПИКМИКСОВ --- */
+.framed-layout {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+.frame-row {
+  display: flex;
+  flex-wrap: nowrap;
+  width: 100%;
+  line-height: 0;
+  /* высота задаётся JS через style на дочерних img */
+  overflow: hidden;
+}
+.frame-row .frame-gif {
+  display: block;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.frame-middle {
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+}
+
+.frame-col {
+  flex: 0 0 32px;
+  width: 32px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  line-height: 0;
+}
+.frame-col .frame-gif {
+  display: block;
+  flex: 0 0 auto;
+  width: 32px;
+  height: 32px;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
+
+.content-area {
+  flex: 1 1 auto;
+  min-width: 0;
   display: flex;
   gap: 16px;
   align-items: flex-start;
+  padding: 8px 0;
+  /* фолбэк, если JS не сгенерировал рамку — хотя бы отступы */
 }
 
 .main-column { flex: 1 1 auto; min-width: 0; }
 .sidebar { flex: 0 0 240px; display: flex; flex-direction: column; gap: 12px; }
+
+/* на мобилке колонки рамки можно сузить */
+@media (max-width: 800px) {
+  .frame-row .frame-gif,
+  .frame-col .frame-gif { width: 24px; height: 24px; }
+  .frame-col { flex-basis: 24px; width: 24px; }
+}
 
 /* --- ОКНО В СТИЛЕ WIN95 --- */
 .window {
@@ -142,45 +194,14 @@ b, strong { color: #800000; }
   font-size: 11px;
   padding: 0 4px;
 }
-
 .window-body { padding: 16px 18px 20px; }
-
-/* --- ЛОГОТИП (WORD ART) --- */
-.logo-wrap {
-  text-align: center;
-  padding: 16px 8px 8px;
-}
-.logo-text {
-  display: inline-block;
-  font-family: Impact, "Arial Black", sans-serif;
-  font-size: clamp(38px, 8vw, 84px);
-  line-height: 0.85;
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  background: linear-gradient(90deg,
-    #ff0066 0%, #ff6600 20%, #ffcc00 40%,
-    #00cc00 60%, #0066ff 80%, #cc00ff 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  filter: drop-shadow(2px 2px 0 #000) drop-shadow(3px 3px 0 #fff);
-  transform: rotate(-2deg);
-  margin-bottom: 8px;
-}
-.logo-sub {
-  font-family: "Comic Sans MS", cursive;
-  font-size: 14px;
-  color: #000080;
-  margin-top: 12px;
-}
 
 /* --- НАВИГАЦИЯ --- */
 .main-nav {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin: 16px 0 20px;
+  margin: 0 0 20px;
   padding: 8px;
   background: #a0a0a0;
   border: 2px solid;
@@ -229,17 +250,6 @@ b, strong { color: #800000; }
   to   { filter: brightness(1.4); }
 }
 
-/* Когда скачаешь assets/gifs/under-construction.gif — раскомментируй:
-
-.under-construction {
-  background: url("../assets/gifs/under-construction.gif") center / auto 100% no-repeat, #000;
-  min-height: 60px;
-  color: transparent;
-  font-size: 0;
-  animation: none;
-}
-*/
-
 /* --- СЕКЦИИ --- */
 .section {
   margin: 0 0 24px;
@@ -250,15 +260,8 @@ b, strong { color: #800000; }
 }
 .section > :last-child { margin-bottom: 0; }
 
-.page-title {
-  margin: 0 0 6px;
-  font-size: 26px;
-}
-.page-sub {
-  color: #444;
-  font-size: 13px;
-  margin-bottom: 18px;
-}
+.page-title { margin: 0 0 6px; font-size: 26px; }
+.page-sub { color: #444; font-size: 13px; margin-bottom: 18px; }
 
 /* --- НОВОСТИ --- */
 .news-list { display: flex; flex-direction: column; gap: 8px; }
@@ -285,8 +288,6 @@ b, strong { color: #800000; }
   font-family: Arial, sans-serif;
   letter-spacing: 1px;
 }
-
-/* --- МИГАНИЕ --- */
 .blink { animation: blink 1s steps(2, start) infinite; }
 @keyframes blink { to { visibility: hidden; } }
 
@@ -335,12 +336,7 @@ b, strong { color: #800000; }
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
-.game-desc {
-  font-size: 13px;
-  color: #222;
-  flex: 1;
-  margin: 0;
-}
+.game-desc { font-size: 13px; color: #222; flex: 1; margin: 0; }
 .game-card-foot {
   display: flex;
   align-items: center;
@@ -351,7 +347,6 @@ b, strong { color: #800000; }
   border-top: 1px solid #eee;
   padding-top: 6px;
 }
-
 .see-all { margin: 14px 0 0; font-size: 13px; }
 
 /* --- КНОПКИ --- */
@@ -390,7 +385,6 @@ b, strong { color: #800000; }
 }
 .widget-body { padding: 10px 12px; font-size: 13px; }
 
-/* счётчик */
 .counter-widget { text-align: center; }
 .counter-label { font-size: 11px; color: #333; margin: 2px 0; }
 .counter-display {
@@ -416,7 +410,6 @@ b, strong { color: #800000; }
   animation: blink 1s steps(2, start) infinite;
 }
 
-/* часы */
 .clock-widget { text-align: center; }
 .clock-label { font-size: 11px; color: #333; }
 .clock-display {
@@ -433,18 +426,10 @@ b, strong { color: #800000; }
   text-shadow: 0 0 6px #ff8000;
 }
 
-/* музыка */
 .music-widget { text-align: center; }
 .music-label { font-size: 11px; color: #333; margin-bottom: 6px; }
-.music-btn {
-  width: 100%;
-  font-size: 13px;
-  padding: 6px 10px;
-}
-.music-btn[data-state="on"] {
-  background: #000080;
-  color: #ff0;
-}
+.music-btn { width: 100%; font-size: 13px; padding: 6px 10px; }
+.music-btn[data-state="on"] { background: #000080; color: #ff0; }
 .music-note {
   font-size: 10px;
   color: #888;
@@ -452,17 +437,12 @@ b, strong { color: #800000; }
   font-family: "Courier New", monospace;
 }
 
-/* кнопки 88x31 */
 .badges {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
   justify-content: center;
   padding: 8px;
-}
-.badges img {
-  display: block;
-  border: 1px solid #000;
 }
 .badge {
   width: 88px;
@@ -486,9 +466,7 @@ b, strong { color: #800000; }
 .badge-y2k  { background: #800080; color: #ff0; }
 .badge-green{ background: #006400; color: #fff; }
 
-/* веб-кольцо */
 .webring { text-align: center; }
-.webring-logo { display: block; margin: 0 auto 6px; max-width: 100%; }
 .webring-title {
   font-family: Impact, sans-serif;
   font-size: 14px;
@@ -503,10 +481,8 @@ b, strong { color: #800000; }
   font-size: 11px;
 }
 
-/* список ссылок */
 .link-list { display: flex; flex-direction: column; gap: 4px; font-size: 12px; }
 
-/* статистика */
 .stat-row {
   display: flex;
   justify-content: space-between;
@@ -516,24 +492,8 @@ b, strong { color: #800000; }
 }
 .stat-row:last-child { border-bottom: none; }
 
-/* цитата */
-.quote {
-  margin: 0;
-  font-style: italic;
-  font-size: 13px;
-  color: #222;
-}
-.quote-author {
-  text-align: right;
-  margin-top: 6px;
-  font-size: 12px;
-  color: #000080;
-}
-
-/* глобус */
-.globe-widget { text-align: center; }
-.globe-gif { display: block; margin: 0 auto 6px; max-width: 100%; }
-.globe-caption { font-size: 10px; color: #666; font-family: "Courier New", monospace; }
+.quote { margin: 0; font-style: italic; font-size: 13px; color: #222; }
+.quote-author { text-align: right; margin-top: 6px; font-size: 12px; color: #000080; }
 
 /* --- ABOUT --- */
 .about-grid {
@@ -555,31 +515,11 @@ b, strong { color: #800000; }
   overflow-x: auto;
   margin: 0;
 }
-.about-gif-row {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
-}
-.about-gif { display: block; max-height: 48px; }
-.about-gif-caption { font-size: 11px; color: #666; font-style: italic; }
 
-/* скиллы */
 .skills { display: flex; flex-direction: column; gap: 8px; }
-.skill-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 13px;
-}
+.skill-row { display: flex; align-items: center; gap: 10px; font-size: 13px; }
 .skill-name { flex: 0 0 150px; }
-.skill-bar {
-  flex: 1;
-  height: 16px;
-  background: #fff;
-  border: 1px solid #404040;
-  position: relative;
-}
+.skill-bar { flex: 1; height: 16px; background: #fff; border: 1px solid #404040; position: relative; }
 .skill-bar > span {
   display: block;
   height: 100%;
@@ -593,16 +533,8 @@ b, strong { color: #800000; }
   color: #000080;
 }
 
-/* таблица */
-.spec-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 13px;
-}
-.spec-table td {
-  padding: 6px 8px;
-  border-bottom: 1px dotted #999;
-}
+.spec-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.spec-table td { padding: 6px 8px; border-bottom: 1px dotted #999; }
 .spec-table td:first-child {
   font-weight: bold;
   color: #000080;
@@ -614,12 +546,7 @@ b, strong { color: #800000; }
 .fav-games li { margin-bottom: 6px; }
 
 /* --- ГОСТЕВАЯ --- */
-.gb-form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 560px;
-}
+.gb-form { display: flex; flex-direction: column; gap: 10px; max-width: 560px; }
 .gb-form label {
   display: flex;
   flex-direction: column;
@@ -639,9 +566,7 @@ b, strong { color: #800000; }
   width: 100%;
 }
 .gb-form input:focus,
-.gb-form textarea:focus {
-  outline: 2px solid #ff8000;
-}
+.gb-form textarea:focus { outline: 2px solid #ff8000; }
 .gb-actions { display: flex; gap: 8px; flex-wrap: wrap; }
 .gb-note { font-size: 11px; color: #666; margin: 4px 0 0; }
 
@@ -673,11 +598,7 @@ b, strong { color: #800000; }
   color: #666;
 }
 .gb-entry-msg { color: #222; white-space: pre-wrap; word-wrap: break-word; }
-.gb-entry-site {
-  display: inline-block;
-  font-size: 11px;
-  margin-top: 4px;
-}
+.gb-entry-site { display: inline-block; font-size: 11px; margin-top: 4px; }
 .gb-count { color: #666; font-family: Arial, sans-serif; font-size: 14px; }
 
 /* --- 404 --- */
@@ -695,7 +616,7 @@ b, strong { color: #800000; }
 
 /* --- ФУТЕР --- */
 .site-footer {
-  max-width: 1100px;
+  max-width: 1180px;
   margin: 24px auto 0;
   padding: 14px 12px;
   text-align: center;
@@ -725,12 +646,11 @@ b, strong { color: #800000; }
 
 /* --- МОБИЛКА --- */
 @media (max-width: 800px) {
-  .layout { flex-direction: column; }
+  .content-area { flex-direction: column; }
   .sidebar { flex: 1 1 auto; width: 100%; flex-direction: row; flex-wrap: wrap; }
   .sidebar .widget { flex: 1 1 200px; }
   .about-grid { grid-template-columns: 1fr; }
   .about-ascii { margin: 0 auto; max-width: 100%; }
-  .logo-text { font-size: 42px; }
   .title-buttons { display: none; }
   body { padding: 12px 6px; }
   .window-body { padding: 12px; }
@@ -739,10 +659,4 @@ b, strong { color: #800000; }
 }
 
 @media (max-width: 480px) {
-  .games-grid { grid-template-columns: 1fr; }
-  .main-nav { justify-content: center; }
-  .page-title { font-size: 20px; }
-  .logo-text { font-size: 32px; }
-  .ascii-404 { font-size: 8px; }
-  .top-marquee { font-size: 11px; }
-}
+  .games-grid { grid-template-columns: 1
